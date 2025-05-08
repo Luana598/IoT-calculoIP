@@ -1,6 +1,6 @@
 package model;
 
-public class IP {
+public class CalculoIP {
 
 	private int primeiroOcteto;
 	private int segundoOcteto;
