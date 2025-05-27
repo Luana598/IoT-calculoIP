@@ -25,11 +25,11 @@ public class TelaIP {
 	//painel de informações
 	private JButton btnCalcular, btnLimpar;
 	private JPanel pnlInfo;
-	private JLabel lblIp, lblClasse, lblDecMask, lblBinMask, lblHosts;
+	private JLabel lblIp, lblClasse, lblDecMask, lblBinMask, lblHosts, lblNumRedes;
 	
 	//resultados e mensagem de erro
 	private JPanel pnlResult;
-	private JLabel lblIpResult, lblClasseResult, lblDecMaskResult, lblBinMaskResult, lblHostsResult, lblNumRedes;
+	private JLabel lblIpResult, lblClasseResult, lblDecMaskResult, lblBinMaskResult, lblHostsResult, lblNumRedesResult;
 	private JLabel lblMsgErro;
 	
 			public void CriarTelaIp() {
@@ -37,7 +37,7 @@ public class TelaIP {
 				
 				//características da tela
 				JFrame tela = new JFrame();
-				tela.setSize(500, 405);
+				tela.setSize(500, 428);
 				tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				tela.setTitle("Informações de IP");
 				tela.setLayout(null);
@@ -77,6 +77,7 @@ public class TelaIP {
 				
 				lblCidr = new JLabel();
 				lblCidr.setBounds(380,20,100,35);
+				lblCidr.setText("CIDR:");
 				lblCidr.setFont(new Font("Arial", Font.BOLD, 15));
 				
 				txtCidr = new JTextField();
@@ -107,8 +108,9 @@ public class TelaIP {
 							lblIpResult.setText(calculadora.getIp());
 							lblClasseResult.setText(calculadora.getClasse());
 							lblDecMaskResult.setText(calculadora.getMascaraDec());
-							lblDecMaskResult.setText(calculadora.getMascaraBin());
+							lblBinMaskResult.setText(calculadora.getMascaraBin());
 							lblHostsResult.setText(String.valueOf(calculadora.getIpsDisponíveis()));
+							lblNumRedesResult.setText(String.valueOf(calculadora.getQtdSubRedes()));
 							
 							
 							 lblMsgErro.setText("");
@@ -144,6 +146,7 @@ public class TelaIP {
 							lblDecMaskResult.setText("");
 							lblBinMaskResult.setText("");
 							lblHostsResult.setText("");
+							lblNumRedesResult.setText("");
 							
 							lblMsgErro.setText("");
 						
@@ -154,8 +157,8 @@ public class TelaIP {
 				});
 				
 				//informações
-				pnlInfo = new JPanel(new GridLayout(5,1,0,0));
-				pnlInfo.setBounds(37, 160, 200, 115);
+				pnlInfo = new JPanel(new GridLayout(6,1,0,0));
+				pnlInfo.setBounds(37, 160, 200, 138);
 				
 				lblIp = new JLabel();
 				lblIp.setText("IP inserido: ");
@@ -182,9 +185,14 @@ public class TelaIP {
 				lblHosts.setFont(new Font("Arial", Font.BOLD, 15));
 				pnlInfo.add(lblHosts);
 				
+				lblNumRedes = new JLabel();
+				lblNumRedes.setText("sub-redes: ");
+				lblNumRedes.setFont(new Font("Arial", Font.BOLD, 15));
+				pnlInfo.add(lblNumRedes);
+				
 				//resultados
-				pnlResult = new JPanel(new GridLayout(5,1,0,0));
-				pnlResult.setBounds(160, 160, 287, 115);
+				pnlResult = new JPanel(new GridLayout(6,1,0,0));
+				pnlResult.setBounds(160, 160, 287, 138);
 				
 				lblIpResult = new JLabel();
 				lblIpResult.setFont(new Font("Arial", Font.BOLD, 15));
@@ -211,6 +219,10 @@ public class TelaIP {
 				lblHostsResult.setHorizontalAlignment(SwingConstants.RIGHT);
 				pnlResult.add(lblHostsResult);
 				
+				lblNumRedesResult = new JLabel();
+				lblNumRedesResult.setFont(new Font("Arial", Font.BOLD, 15));
+				lblNumRedesResult.setHorizontalAlignment(SwingConstants.RIGHT);
+				pnlResult.add(lblNumRedesResult);
 				
 				lblMsgErro = new JLabel();
 				lblMsgErro.setBounds(67,295,400,40);

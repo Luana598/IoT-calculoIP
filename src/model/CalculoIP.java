@@ -20,7 +20,7 @@ public class CalculoIP {
 	}
 	
 	public String getIp () {
-		return String.format("n%, n%, n%, n%", primeiroOcteto, segundoOcteto, terceiroOcteto, quartoOcteto);
+		return String.format("%d.%d.%d.%d/%d", primeiroOcteto, segundoOcteto, terceiroOcteto, quartoOcteto, cidr);
 	}
 	
 	public String getClasse () {
@@ -46,7 +46,7 @@ public class CalculoIP {
 		
 		public String getMascaraBin() {
 			int mascara = 0xffffffff << (32 - cidr);
-			return String.format("%32s", Integer.toBinaryString(mascara)).replace(' ', '0');
+			return String.format("%32s", Integer.toBinaryString(mascara)).replace(' ', '0').substring(0, 32);
 	}
 		
 		public int getIpsDisponíveis() {
@@ -56,5 +56,20 @@ public class CalculoIP {
 				return (int) Math.pow(2,32-cidr);
 			}
 		}
+		
+		public int getQtdSubRedes() {
+		    int base;
+		    switch (getClasse()) {
+		        case "A": base = 8; break;
+		        case "B": base = 16; break;
+		        case "C": base = 24; break;
+		        default: return 0;
+		    }
+		    
+		    if (cidr <= base) return 1;
+		    
+		    return (int) Math.pow(2, cidr - base);
+		}
+
 
 }
