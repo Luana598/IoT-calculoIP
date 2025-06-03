@@ -37,7 +37,7 @@ public class TelaIP {
 				
 				//características da tela
 				JFrame tela = new JFrame();
-				tela.setSize(500, 428);
+				tela.setSize(500, 497);
 				tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				tela.setTitle("Informações de IP");
 				tela.setLayout(null);
@@ -99,6 +99,17 @@ public class TelaIP {
 							int terceiroOcteto = Integer.parseInt(txtTerceiroOcteto.getText());
 							int quartoOcteto = Integer.parseInt(txtQuartoOcteto.getText());
 							int cidr = Integer.parseInt(txtCidr.getText());
+							
+							if (primeiroOcteto < 0 || primeiroOcteto > 255 ||
+							    segundoOcteto < 0 || segundoOcteto > 255 ||
+							    terceiroOcteto < 0 || terceiroOcteto > 255 ||
+							    quartoOcteto < 0 || quartoOcteto > 255 ||
+							    cidr < 0 || cidr > 32) {
+							    
+							    lblMsgErro.setText("<html> O Valor do IP devem estar entre 0 e 255. O CIDR deve estar entre 0 e 32.</html>");
+							    return;
+							}
+
 							
 							
 							CalculoIP calculadora = new CalculoIP();
@@ -265,7 +276,7 @@ public class TelaIP {
 				
 				
 				lblMsgErro = new JLabel();
-				lblMsgErro.setBounds(67,295,400,40);
+				lblMsgErro.setBounds(67,387,400,40);
 				lblMsgErro.setForeground(Color.red);
 				lblMsgErro.setFont(new Font("Arial", Font.BOLD, 15));
 				
