@@ -53,7 +53,7 @@ public class CalculoIP {
 			if (cidr >= 32) {
 				return 1;
 			} else {
-				return (int) Math.pow(2,32-cidr);
+				return (int) Math.pow(2,32-cidr) - 2;
 			}
 		}
 		
@@ -71,5 +71,55 @@ public class CalculoIP {
 		    return (int) Math.pow(2, cidr - base);
 		}
 
+		   public int calcSalto() {
+		        int mascara = 0xFFFFFFFF << (32 - cidr);
+		        int ultimoOctetoMascara = (mascara & 0xFF);
+		        return 256 - ultimoOctetoMascara;
+		    }
 
+		    public String getPrimIpValido() {
+				int ultimoOcteto = quartoOcteto;
+				int primIpValido = ultimoOcteto + 1;
+
+				if (primIpValido > 255) {
+					primIpValido = 0;
+					terceiroOcteto++;
+					if (terceiroOcteto > 255) {
+						terceiroOcteto = 0;
+						segundoOcteto++;
+						if (segundoOcteto > 255) {
+							segundoOcteto = 0;
+							primeiroOcteto++;
+							if (primeiroOcteto > 255) {
+								primeiroOcteto = 0;
+							}
+						}
+					}
+				}
+
+				return String.format("%d.%d.%d.%d", primeiroOcteto, segundoOcteto, terceiroOcteto, primIpValido);
+			}
+		    
+		    public String getUltimoIpValido() {
+		        int ip = (primeiroOcteto << 24) | (segundoOcteto << 16) | (terceiroOcteto << 8) | quartoOcteto;
+		        int rede = ip & (0xFFFFFFFF << (32 - cidr));
+		        int broadcast = rede | ~(0xFFFFFFFF << (32 - cidr));
+		        int ultimoIp = broadcast - 1;
+		        return formatIp(ultimoIp);
+		    }
+
+		    public String getIpBroadcast() {
+		        int ip = (primeiroOcteto << 24) | (segundoOcteto << 16) | (terceiroOcteto << 8) | quartoOcteto;
+		        int rede = ip & (0xFFFFFFFF << (32 - cidr));
+		        int broadcast = rede | ~(0xFFFFFFFF << (32 - cidr));
+		        return formatIp(broadcast);
+		    }
+
+		    private String formatIp(int ip) {
+		        return String.format("%d.%d.%d.%d",
+		                (ip >>> 24) & 0xFF,
+		                (ip >>> 16) & 0xFF,
+		                (ip >>> 8) & 0xFF,
+		                ip & 0xFF);
+		    }
 }

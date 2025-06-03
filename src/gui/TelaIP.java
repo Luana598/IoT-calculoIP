@@ -25,11 +25,11 @@ public class TelaIP {
 	//painel de informações
 	private JButton btnCalcular, btnLimpar;
 	private JPanel pnlInfo;
-	private JLabel lblIp, lblClasse, lblDecMask, lblBinMask, lblHosts, lblNumRedes;
+	private JLabel lblIp, lblClasse, lblDecMask, lblBinMask, lblHosts, lblNumRedes, lblPrimeiroIpValido, lblUltimoIpValido, lblBroadcast;
 	
 	//resultados e mensagem de erro
 	private JPanel pnlResult;
-	private JLabel lblIpResult, lblClasseResult, lblDecMaskResult, lblBinMaskResult, lblHostsResult, lblNumRedesResult;
+	private JLabel lblIpResult, lblClasseResult, lblDecMaskResult, lblBinMaskResult, lblHostsResult, lblNumRedesResult, lblPrimeiroIpValidoResult, lblUltimoIpValidoResult, lblBroadcastResult;
 	private JLabel lblMsgErro;
 	
 			public void CriarTelaIp() {
@@ -111,6 +111,9 @@ public class TelaIP {
 							lblBinMaskResult.setText(calculadora.getMascaraBin());
 							lblHostsResult.setText(String.valueOf(calculadora.getIpsDisponíveis()));
 							lblNumRedesResult.setText(String.valueOf(calculadora.getQtdSubRedes()));
+							lblPrimeiroIpValidoResult.setText(String.valueOf(calculadora.getPrimIpValido()));
+							lblUltimoIpValidoResult.setText(String.valueOf(calculadora.getUltimoIpValido()));
+							lblBroadcastResult.setText(String.valueOf(calculadora.getIpBroadcast()));
 							
 							
 							 lblMsgErro.setText("");
@@ -147,6 +150,10 @@ public class TelaIP {
 							lblBinMaskResult.setText("");
 							lblHostsResult.setText("");
 							lblNumRedesResult.setText("");
+							lblPrimeiroIpValidoResult.setText("");
+							lblUltimoIpValidoResult.setText("");
+							lblBroadcastResult.setText("");
+							
 							
 							lblMsgErro.setText("");
 						
@@ -157,8 +164,8 @@ public class TelaIP {
 				});
 				
 				//informações
-				pnlInfo = new JPanel(new GridLayout(6,1,0,0));
-				pnlInfo.setBounds(37, 160, 200, 138);
+				pnlInfo = new JPanel(new GridLayout(9, 1, 0, 0));
+				pnlInfo.setBounds(37, 160, 200, 207);
 				
 				lblIp = new JLabel();
 				lblIp.setText("IP inserido: ");
@@ -190,9 +197,26 @@ public class TelaIP {
 				lblNumRedes.setFont(new Font("Arial", Font.BOLD, 15));
 				pnlInfo.add(lblNumRedes);
 				
+				lblPrimeiroIpValido = new JLabel();
+				lblPrimeiroIpValido.setText("Primeiro Ip Válido: ");
+				lblPrimeiroIpValido.setFont(new Font("Arial", Font.BOLD, 15));
+				pnlInfo.add(lblPrimeiroIpValido);
+				
+				lblUltimoIpValido = new JLabel();
+				lblUltimoIpValido.setText("Último Ip Válido: ");
+				lblUltimoIpValido.setFont(new Font("Arial", Font.BOLD, 15));
+				pnlInfo.add(lblUltimoIpValido);
+				
+
+				lblBroadcast = new JLabel();
+				lblBroadcast.setText("Ip de Broadcast: ");
+				lblBroadcast.setFont(new Font("Arial", Font.BOLD, 15));
+				pnlInfo.add(lblBroadcast);
+				
+				
 				//resultados
-				pnlResult = new JPanel(new GridLayout(6,1,0,0));
-				pnlResult.setBounds(160, 160, 287, 138);
+				pnlResult = new JPanel(new GridLayout(9, 1, 0, 0));
+				pnlResult.setBounds(160, 160, 287, 207);
 				
 				lblIpResult = new JLabel();
 				lblIpResult.setFont(new Font("Arial", Font.BOLD, 15));
@@ -223,6 +247,22 @@ public class TelaIP {
 				lblNumRedesResult.setFont(new Font("Arial", Font.BOLD, 15));
 				lblNumRedesResult.setHorizontalAlignment(SwingConstants.RIGHT);
 				pnlResult.add(lblNumRedesResult);
+				
+				lblPrimeiroIpValidoResult = new JLabel();
+				lblPrimeiroIpValidoResult.setFont(new Font("Arial", Font.BOLD, 15));
+				lblPrimeiroIpValidoResult.setHorizontalAlignment(SwingConstants.RIGHT);
+				pnlResult.add(lblPrimeiroIpValidoResult);
+				
+				lblUltimoIpValidoResult = new JLabel();
+				lblUltimoIpValidoResult.setFont(new Font("Arial", Font.BOLD, 15));
+				lblUltimoIpValidoResult.setHorizontalAlignment(SwingConstants.RIGHT);
+				pnlResult.add(lblUltimoIpValidoResult);
+				
+				lblBroadcastResult = new JLabel();
+				lblBroadcastResult.setFont(new Font("Arial", Font.BOLD, 15));
+				lblBroadcastResult.setHorizontalAlignment(SwingConstants.RIGHT);
+				pnlResult.add(lblBroadcastResult);
+				
 				
 				lblMsgErro = new JLabel();
 				lblMsgErro.setBounds(67,295,400,40);
