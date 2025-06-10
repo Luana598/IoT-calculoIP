@@ -10,4 +10,7 @@ Este projeto oferece uma calculadora de IP intuitiva, desenvolvida em Java com u
 - CIDR para Máscara: Transforma a notação CIDR em sua máscara de sub-rede decimal equivalente.
 - Binário à Vista: Mostra o IP em sua representação binária.
 - Detalhamento de Redes: Calcula o número total de sub-redes disponíveis e quantos hosts cada sub-rede pode comportar.
-- Criado por: Luana M. Lopes Bomfim. 
+
+- ![image](https://github.com/user-attachments/assets/215964ef-34bd-454d-ba84-f6413adff041)
+
+- Criado por: Luana M. Lopes Bomfim.
